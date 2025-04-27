@@ -20,14 +20,8 @@ SAUR model is a complex model for uncertain knowledge graph inference, which com
     <img src="pics/unKR.svg", width="1000">
 </h3>
 <!-- <p align="center">
-    <a href=""> <img src="pics/unKR.svg" width="1000"/></a>
+    <a href=""> <img src="pics/SAUR-unKR.png" width="1000"/></a>
 <p> -->
-
-<!-- ![demo](./pics/demo.gif) -->
-
-<img src="pics/demo.gif">
-
-<!-- <img src="pics/demo.gif" width="900" height="500" align=center> -->
 
 
 ## Datasets
@@ -41,7 +35,7 @@ unKR provides three public UKG datasets including CN15K, NL27K, and PPI5K. The f
                                                                                                                                                  |
 
 ## Reproduced Results
-unKR determines two tasks, confidence prediction and link prediction, to evaluate models' ability of UKG reasoning. For confidence prediction task, MSE (Mean Squared Error) and MAE (Mean Absolute Error) are reported. For link prediction task, Hits@k(k=1,3,10), MRR (Mean Reciprocal Rank), MR (Mean Rank) under both raw and filterd settings are reported. In addition, we choose high-confidence (>0.7) triples as the test data for link prediction.
+unKR determines two tasks, confidence prediction and link prediction, to evaluate models' ability of UKG reasoning. For confidence prediction task, MSE (Mean Squared Error) and MAE (Mean Absolute Error) are reported. For link prediction task, Hits@k(k=1,3,10), MRR (Mean Reciprocal Rank) under both raw and filterd settings are reported. In addition, we choose high-confidence (>0.7) triples as the test data for link prediction.
 
 Here are the reproduce results of SAUR model on NL27K dataset with unKR. 
 
@@ -49,7 +43,6 @@ Here are the reproduce results of SAUR model on NL27K dataset with unKR.
 <table>
     <thead>
         <tr>
-            <th>Type</th>
             <th>Model</th>
             <th>MSE</th>
             <th>MAE </th>
@@ -57,15 +50,19 @@ Here are the reproduce results of SAUR model on NL27K dataset with unKR.
     </thead>
     <tbody align="center" valign="center">
         <tr>
-            <td rowspan="8">Normal</td>
-            <td>SAUR</td>
-            <td>0.08920 </td>
-            <td>0.22194  </td>
+            <td>cn15k</td>
+            <td>0.0688 </td>
+            <td>0.1676  </td>
         </tr>
         <tr>
-            <td>PASSLEAF(ComplEx)</td>
-            <td>0.02434 </td>
-            <td>0.05176  </td>
+            <td>nl27k</td>
+            <td>0.0143 </td>
+            <td>0.0445  </td>
+        </tr>
+        <tr>
+            <td>ppi5k</td>
+            <td>0.0034 </td>
+            <td>0.0341  </td>
         </tr>
     </tbody>
 </table>
@@ -74,32 +71,27 @@ Here are the reproduce results of SAUR model on NL27K dataset with unKR.
 <table>
     <thead>
         <tr>
-            <th>Type</th>
             <th>Model</th>
+            <th>MRR</th>
             <th>Hits@1</th>
             <th>Hits@3</th>
             <th>Hits@10</th>
-            <th>MRR</th>
-            <th>MR</th>
         </tr>
     </thead>
     <tbody align="center" valign="center">
         <tr>
-            <td rowspan="10">Normal</td>
-            <td>SAUR</td>
-            <td>0.156 </td>
-            <td>0.385 </td>
-            <td>0.543 </td>
-            <td>0.299 </td>
-            <td>488.051 </td>
+            <td>cn15k</td>
+            <td>0.135 </td>
+            <td>0.106 </td>
+            <td>0.154 </td>
+            <td>0.209 </td>
         </tr>
         <tr>
-            <td>FocusE</td>
-            <td>0.814 </td>
-            <td>0.918 </td>
-            <td>0.957 </td>
-            <td>0.870 </td>
-            <td>384.471 </td>
+            <td>nl27k</td>
+            <td>0.461 </td>
+            <td>0.349 </td>
+            <td>0.496 </td>
+            <td>0.547 </td>
         </tr>
     </tbody>
 </table>
