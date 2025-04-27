@@ -28,14 +28,6 @@ unKR core development team will provide long-term technical support, and develop
     <a href=""> <img src="pics/unKR.svg" width="1000"/></a>
 <p> -->
 
-## What's New
-- [May, 2024] We perform instruction tuning with LLaMA-2-7B for UKG reasoning and achieve stronger performance in several UKG resoning tasks. We have relesed the implementation source code and tuned checkpoints.
-- [Mar, 2024] Our paper "unKR: A Python Library for Uncertain Knowledge Graph Reasoning by Representation Learning" is accepted by SIGIR2024 Demonstration Track.
-- [Feb, 2024] We have relesed this repo that includes the source code and documentation of unKR.
-
-
-## Demo
-This is a demo shows the training and testing process of [PASSLEAF](https://ojs.aaai.org/index.php/AAAI/article/view/16522) model with unKR.
 <!-- ![demo](./pics/demo.gif) -->
 
 <img src="pics/demo.gif">
@@ -51,22 +43,12 @@ unKR provides three public UKG datasets including CN15K, NL27K, and PPI5K. The f
 |  CN15K  | ConceptNet |   15000   |    36     |   241158    |
 |  NL27K  |    NELL    |   27221   |    404    |   175412    |
 |  PPI5K  |   STRING   |   4999    |     7     |   271666    |
-
-
-## Models
-Now, nine uncertain knowledge graph representation learning models are available and they can be divided to two types: normal and few-shot models.
-
-
-|   Type   |                                                                                                                                                                                                                                                    Model                                                                                                                                                                                                                                                     |
-|:--------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|  Normal  | [BEURrE](https://aclanthology.org/2021.naacl-main.68), [FocusE](https://www.ijcai.org/proceedings/2021/395), [GTransE](https://link.springer.com/chapter/10.1007/978-3-030-39878-1_16), [PASSLEAF](https://ojs.aaai.org/index.php/AAAI/article/view/16522), [UKGE](https://ojs.aaai.org/index.php/AAAI/article/view/4210), [UKGsE](https://www.sciencedirect.com/science/article/abs/pii/S0020025522007885), [UPGAT](https://link.springer.com/chapter/10.1007/978-3-031-33377-4_5) |
-| Few-shot |                                                                                                                                                                                [GMUC](https://link.springer.com/chapter/10.1007/978-3-030-73194-6_18), [GMUC+](https://link.springer.com/chapter/10.1007/978-981-19-7596-7_2)                                                                                                                                                                                |
-
+                                                                                                                                                 |
 
 ## Reproduced Results
 unKR determines two tasks, confidence prediction and link prediction, to evaluate models' ability of UKG reasoning. For confidence prediction task, MSE (Mean Squared Error) and MAE (Mean Absolute Error) are reported. For link prediction task, Hits@k(k=1,3,10), MRR (Mean Reciprocal Rank), MR (Mean Rank) under both raw and filterd settings are reported. In addition, we choose high-confidence (>0.7) triples as the test data for link prediction.
 
-Here are the reproduce results of nine models on NL27K dataset with unKR. See more results at [here](https://seucoin.github.io/unKR/result.html).
+Here are the reproduce results of nine models on NL27K dataset with unKR. 
 
 ### Confidence prediction
 <table>
@@ -258,25 +240,21 @@ Here are the reproduce results of nine models on NL27K dataset with unKR. See mo
 **Step1** Create a virtual environment using ```Anaconda``` and enter it.
 
 ```bash
-conda create -n unKR python=3.8
-conda activate unKR
+conda create -n unKR_SAUR python=3.9
+conda activate unKR_SAUR
 ```
 
 **Step2**  Install package.
 + Install from source
 ```bash
-git clone https://github.com/seucoin/unKR.git
-cd unKR
+git clone https://github.com/bleakdebug/czy_demo.git
+cd unKR_SAUR
 pip install -r requirements.txt
 python setup.py install
 ```
-+ Install by pypi
-```bash
-pip install unKR
-```
 
 ### Data Format
-For normal models, `train.tsv`, `val.tsv`, and `test.tsv` are required. 
+For SAUR model, `train.tsv`, `val.tsv`, and `test.tsv` are required. 
 
 - `train.tsv`: All facts used for training in the format `(h, r, t, s)`, one fact per line.
 
@@ -285,99 +263,19 @@ For normal models, `train.tsv`, `val.tsv`, and `test.tsv` are required.
 - `test.tsv`: All facts used for testing in the format `(h, r, t, s)`, one fact per line.
 
 
-For few-shot models, `train_tasks.json`, `dev_tasks.json`, `test_tasks.json` and `path_graph` are required.
-
-- `train/dev/test_tasks.json`: Few-shot dataset with one task per relation in the format`{r:[[h, r, t, s], ...]}`. The key of the dictionary is the task name and the values are all the facts under the task.
-
-- `path_graph`: background knowledge, i.e., all data except training, validation and testing tasks, in the format`(h, r, t, s)`. One fact per line.
-
-
-
-For [UKGE](https://ojs.aaai.org/index.php/AAAI/article/view/4210), the`softlogic.tsv`file is also required.
-
-- `softlogic.tsv`: All facts inferred by PSL in the format`(h, r, t, s)`, one fact per line.
-
-
-
 ### Parameter Setting
-You can set up parameters by [config](https://github.com/seucoin/unKR/tree/main/config) file. The desciption of each paramter is at [here](https://seucoin.github.io/unKR/Parameters.html).
+You can set up parameters by [config](https://github.com/bleakdebug/czy_demo/tree/main/config) file. 
 
 
 ### Model Training
 ```bash
-python main.py --load_config --config_path <your-config>
+python SAURdemo.py --load_config --config_path <your-config>
 ```
 
 ### Model Testing
 ```bash
-python main.py --test_only --checkpoint_dir <your-model-path>
+python SAURdemo.py --test_only --checkpoint_dir <your-model-path>
 ```
 
-### Model Customization
-If you want to customize your own model using unKR, you need to create the following classes/functions.
-
-`data`: Implement data processing functions, including `DataPreprocess`, `Sampler` and `KGDataModule`.
-```
-DataPreprocess.py: 
-    class unKR.data.DataPreprocess.<your-model-name>BaseSampler
-    class unKR.data.DataPreprocess.<your-model-name>Data
-Sampler:
-    class unKR.data.Sampler.<your-model-name>Sampler
-    class unKR.data.Sampler.<your-model-name>TestSampler
-KGDataModule.py: 
-    class unKR.data.KGDataModule.<your-model-name>DataModule
-```
-
-`lit_model`: Implement model training, validation, and testing functions.
-```
-<your-model-name>LitModel.py:
-    class unKR.lit_model.<your-model-name>LitModel.<your-model-name>LitModel
-```
-`loss`: Implement loss functions.
-```
-<your-model-name>_Loss.py:
-    class unKR.loss.<your-model-name>_Loss.<your-model-name>_Loss
-```
-`model`: Implement model framework functions, classified as `UKGModel` and `FSUKGModel` based on whether it is a few-shot model.
-```
-<your-model-name>.py:
-    class unKR.model.UKGModel/FSUKGModel.<your-model-name>.<your-model-name>
-```
-`config`: Implement parameter settings.
-```
-<your-model-name>_<dataset-name>.yaml:
-    data_class, litmodel_name, loss_name, model_name, test_sampler_class, train_sampler_class
-```
-`demo`: Implement the model run file.
-```
-<your-model-name>demo.py
-```
-
-<br>
-
-## Citation
-Please cite our paper if you use unKR in your work.
-```
-@inproceedings{unkr,
-  author    = {Jingting Wang and
-               Tianxing Wu and
-               Shilin Chen and
-               Yunchang Liu and
-               Shutong Zhu and
-               Wei Li and
-               Jingyi Xu and
-               Guilin Qi},
-  title     = {unKR: A Python Library for Uncertain Knowledge Graph Reasoning by Representation Learning},
-  booktitle = {{SIGIR}},
-  pages     = {2822--2826},
-  publisher = {{ACM}},
-  year      = {2024}
-}
-
-```
-
-## unKR Core Team
-
-**Southeast University**: Tianxing Wu, Haofen Wang, Jingting Wang, Shilin Chen, Yunchang Liu, Shutong Zhu, Wei Li, Jingyi Xu, Guilin Qi.
 
 
