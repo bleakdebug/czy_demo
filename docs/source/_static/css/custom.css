@@ -1,0 +1,17 @@
+.wy-nav-content {
+	max-width: unset;
+}
+
+.rst-content {
+	max-width: 900px;
+}
+
+.wy-nav-content .icon-home:before {
+	content: "Docs";
+}
+
+.rst-content .viewcode-back,
+.rst-content .viewcode-link
+{
+	font-size: 120%;
+}

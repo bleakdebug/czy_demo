@@ -1,0 +1,1983 @@
+_action_groups:
+- &id130 !!python/object:argparse._ArgumentGroup
+  _action_groups: []
+  _actions: &id001
+  - &id002 !!python/object:argparse._StoreAction
+    choices: null
+    const: true
+    container: &id003 !!python/object:argparse._ArgumentGroup
+      _action_groups: []
+      _actions: *id001
+      _defaults: &id010 {}
+      _group_actions:
+      - *id002
+      - &id033 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: null
+        dest: checkpoint_callback
+        help: 'If ``True``, enable checkpointing. .. deprecated:: v1.5 ``checkpoint_callback``
+          has been deprecated in v1.5 and will be removed in v1.7. Please consider
+          using ``enable_checkpointing`` instead.'
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --checkpoint_callback
+        required: false
+        type: &id004 !!python/name:pytorch_lightning.utilities.parsing.str_to_bool ''
+      - &id049 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: true
+        dest: enable_checkpointing
+        help: If ``True``, enable checkpointing. It will configure a default ModelCheckpoint
+          callback if there is no user-defined ModelCheckpoint in :paramref:`~pytorch_lightning.trainer.trainer.Trainer.callbacks`.
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --enable_checkpointing
+        required: false
+        type: *id004
+      - &id043 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: default_root_dir
+        help: 'Default path for logs and weights when no logger/ckpt_callback passed.
+          Default: ``os.getcwd()``. Can be remote file paths such as `s3://mybucket/path`
+          or ''hdfs://path/'''
+        metavar: null
+        nargs: null
+        option_strings:
+        - --default_root_dir
+        required: false
+        type: &id005 !!python/name:builtins.str ''
+      - &id061 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: gradient_clip_val
+        help: The value at which to clip gradients. Passing ``gradient_clip_val=None``
+          disables gradient clipping. If using Automatic Mixed Precision (AMP), the
+          gradients will be unscaled before.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --gradient_clip_val
+        required: false
+        type: &id008 !!python/name:pytorch_lightning.utilities.argparse._int_or_float_type ''
+      - &id060 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: gradient_clip_algorithm
+        help: The gradient clipping algorithm to use. Pass ``gradient_clip_algorithm="value"``
+          to clip by value, and ``gradient_clip_algorithm="norm"`` to clip by norm.
+          By default it will be set to ``"norm"``.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --gradient_clip_algorithm
+        required: false
+        type: *id005
+      - &id103 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 0
+        dest: process_position
+        help: 'Orders the progress bar when running multiple models on same machine.
+          .. deprecated:: v1.5 ``process_position`` has been deprecated in v1.5 and
+          will be removed in v1.7. Please pass :class:`~pytorch_lightning.callbacks.progress.TQDMProgressBar`
+          with ``process_position`` directly to the Trainer''s ``callbacks`` argument
+          instead.'
+        metavar: null
+        nargs: null
+        option_strings:
+        - --process_position
+        required: false
+        type: &id006 !!python/name:builtins.int ''
+      - &id091 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 1
+        dest: num_nodes
+        help: Number of GPU nodes for distributed training.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --num_nodes
+        required: false
+        type: *id006
+      - &id092 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 1
+        dest: num_processes
+        help: Number of processes for distributed training with ``accelerator="cpu"``.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --num_processes
+        required: false
+        type: *id006
+      - &id046 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: devices
+        help: Will be mapped to either `gpus`, `tpu_cores`, `num_processes` or `ipus`,
+          based on the accelerator type.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --devices
+        required: false
+        type: *id005
+      - &id059 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: gpus
+        help: Number of GPUs to train on (int) or which GPUs to train on (list or
+          str) applied per node
+        metavar: null
+        nargs: null
+        option_strings:
+        - --gpus
+        required: false
+        type: &id007 !!python/name:pytorch_lightning.utilities.argparse._gpus_allowed_type ''
+      - &id028 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: false
+        dest: auto_select_gpus
+        help: If enabled and ``gpus`` is an integer, pick available gpus automatically.
+          This is especially useful when GPUs are configured to be in "exclusive mode",
+          such that only one process at a time can access them.
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --auto_select_gpus
+        required: false
+        type: *id004
+      - &id120 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: tpu_cores
+        help: How many TPU cores to train on (1 or 8) / Single TPU to train on [1]
+        metavar: null
+        nargs: null
+        option_strings:
+        - --tpu_cores
+        required: false
+        type: *id007
+      - &id063 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: ipus
+        help: How many IPUs to train on.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --ipus
+        required: false
+        type: *id006
+      - &id071 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: log_gpu_memory
+        help: 'None, ''min_max'', ''all''. Might slow performance. .. deprecated::
+          v1.5 Deprecated in v1.5.0 and will be removed in v1.7.0 Please use the ``DeviceStatsMonitor``
+          callback directly instead.'
+        metavar: null
+        nargs: null
+        option_strings:
+        - --log_gpu_memory
+        required: false
+        type: *id005
+      - &id105 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: progress_bar_refresh_rate
+        help: 'How often to refresh progress bar (in steps). Value ``0`` disables
+          progress bar. Ignored when a custom progress bar is passed to :paramref:`~Trainer.callbacks`.
+          Default: None, means a suitable value will be chosen based on the environment
+          (terminal, Google COLAB, etc.). .. deprecated:: v1.5 ``progress_bar_refresh_rate``
+          has been deprecated in v1.5 and will be removed in v1.7. Please pass :class:`~pytorch_lightning.callbacks.progress.TQDMProgressBar`
+          with ``refresh_rate`` directly to the Trainer''s ``callbacks`` argument
+          instead. To disable the progress bar, pass ``enable_progress_bar = False``
+          to the Trainer.'
+        metavar: null
+        nargs: null
+        option_strings:
+        - --progress_bar_refresh_rate
+        required: false
+        type: *id006
+      - &id051 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: true
+        dest: enable_progress_bar
+        help: Whether to enable to progress bar by default.
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --enable_progress_bar
+        required: false
+        type: *id004
+      - &id098 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 0.0
+        dest: overfit_batches
+        help: Overfit a fraction of training data (float) or a set number of batches
+          (int).
+        metavar: null
+        nargs: null
+        option_strings:
+        - --overfit_batches
+        required: false
+        type: *id008
+      - &id121 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: -1
+        dest: track_grad_norm
+        help: -1 no tracking. Otherwise tracks that p-norm. May be set to 'inf' infinity-norm.
+          If using Automatic Mixed Precision (AMP), the gradients will be unscaled
+          before logging them.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --track_grad_norm
+        required: false
+        type: &id012 !!python/name:builtins.float ''
+      - &id032 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 1
+        dest: check_val_every_n_epoch
+        help: Check val every n train epochs.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --check_val_every_n_epoch
+        required: false
+        type: *id006
+      - &id054 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: false
+        dest: fast_dev_run
+        help: 'Runs n if set to ``n`` (int) else 1 if set to ``True`` batch(es) of
+          train, val and test to find any bugs (ie: a sort of unit test).'
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --fast_dev_run
+        required: false
+        type: !!python/name:pytorch_lightning.utilities.parsing.str_to_bool_or_int ''
+      - &id021 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: accumulate_grad_batches
+        help: Accumulates grads every k batches or as set up in the dict.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --accumulate_grad_batches
+        required: false
+        type: *id006
+      - &id076 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: max_epochs
+        help: Stop training once this number of epochs is reached. Disabled by default
+          (None). If both max_epochs and max_steps are not specified, defaults to
+          ``max_epochs = 1000``. To enable infinite training, set ``max_epochs = -1``.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --max_epochs
+        required: false
+        type: *id006
+      - &id080 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: min_epochs
+        help: Force training for at least these many epochs. Disabled by default (None).
+          If both min_epochs and min_steps are not specified, defaults to ``min_epochs
+          = 1``.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --min_epochs
+        required: false
+        type: *id006
+      - &id078 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: -1
+        dest: max_steps
+        help: Stop training after this number of steps. Disabled by default (-1).
+          If ``max_steps = -1`` and ``max_epochs = None``, will default to ``max_epochs
+          = 1000``. To enable infinite training, set ``max_epochs`` to ``-1``.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --max_steps
+        required: false
+        type: *id006
+      - &id081 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: min_steps
+        help: Force training for at least these number of steps. Disabled by default
+          (None).
+        metavar: null
+        nargs: null
+        option_strings:
+        - --min_steps
+        required: false
+        type: *id006
+      - &id079 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: max_time
+        help: Stop training after this amount of time has passed. Disabled by default
+          (None). The time duration can be specified in the format DD:HH:MM:SS (days,
+          hours, minutes seconds), as a :class:`datetime.timedelta`, or a dictionary
+          with keys that will be passed to :class:`datetime.timedelta`.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --max_time
+        required: false
+        type: *id005
+      - &id066 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 1.0
+        dest: limit_train_batches
+        help: How much of training dataset to check (float = fraction, int = num_batches).
+        metavar: null
+        nargs: null
+        option_strings:
+        - --limit_train_batches
+        required: false
+        type: *id008
+      - &id067 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 1.0
+        dest: limit_val_batches
+        help: How much of validation dataset to check (float = fraction, int = num_batches).
+        metavar: null
+        nargs: null
+        option_strings:
+        - --limit_val_batches
+        required: false
+        type: *id008
+      - &id065 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 1.0
+        dest: limit_test_batches
+        help: How much of test dataset to check (float = fraction, int = num_batches).
+        metavar: null
+        nargs: null
+        option_strings:
+        - --limit_test_batches
+        required: false
+        type: *id008
+      - &id064 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 1.0
+        dest: limit_predict_batches
+        help: How much of prediction dataset to check (float = fraction, int = num_batches).
+        metavar: null
+        nargs: null
+        option_strings:
+        - --limit_predict_batches
+        required: false
+        type: *id008
+      - &id126 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 1.0
+        dest: val_check_interval
+        help: How often to check the validation set. Use float to check within a training
+          epoch, use int to check every n steps (batches).
+        metavar: null
+        nargs: null
+        option_strings:
+        - --val_check_interval
+        required: false
+        type: *id008
+      - &id056 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: flush_logs_every_n_steps
+        help: 'How often to flush logs to disk (defaults to every 100 steps). .. deprecated::
+          v1.5 ``flush_logs_every_n_steps`` has been deprecated in v1.5 and will be
+          removed in v1.7. Please configure flushing directly in the logger instead.'
+        metavar: null
+        nargs: null
+        option_strings:
+        - --flush_logs_every_n_steps
+        required: false
+        type: *id006
+      - &id070 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 50
+        dest: log_every_n_steps
+        help: How often to log within steps (defaults to every 50 steps).
+        metavar: null
+        nargs: null
+        option_strings:
+        - --log_every_n_steps
+        required: false
+        type: *id006
+      - &id020 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: accelerator
+        help: 'Supports passing different accelerator types ("cpu", "gpu", "tpu",
+          "ipu", "auto") as well as custom accelerator instances. .. deprecated::
+          v1.5 Passing training strategies (e.g., ''ddp'') to ``accelerator`` has
+          been deprecated in v1.5.0 and will be removed in v1.7.0. Please use the
+          ``strategy`` argument instead.'
+        metavar: null
+        nargs: null
+        option_strings:
+        - --accelerator
+        required: false
+        type: *id005
+      - &id115 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: strategy
+        help: Supports different training strategies with aliases as well custom training
+          type plugins.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --strategy
+        required: false
+        type: *id005
+      - &id116 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: false
+        dest: sync_batchnorm
+        help: Synchronize batch norm layers between process groups/whole world.
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --sync_batchnorm
+        required: false
+        type: *id004
+      - &id101 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 32
+        dest: precision
+        help: Double precision (64), full precision (32), half precision (16) or bfloat16
+          precision (bf16). Can be used on CPU, GPU or TPUs.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --precision
+        required: false
+        type: !!python/name:pytorch_lightning.utilities.argparse._precision_allowed_type ''
+      - &id050 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: true
+        dest: enable_model_summary
+        help: Whether to enable model summarization by default.
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --enable_model_summary
+        required: false
+        type: *id004
+      - &id129 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: top
+        dest: weights_summary
+        help: 'Prints a summary of the weights when training begins. .. deprecated::
+          v1.5 ``weights_summary`` has been deprecated in v1.5 and will be removed
+          in v1.7. To disable the summary, pass ``enable_model_summary = False`` to
+          the Trainer. To customize the summary, pass :class:`~pytorch_lightning.callbacks.model_summary.ModelSummary`
+          directly to the Trainer''s ``callbacks`` argument.'
+        metavar: null
+        nargs: null
+        option_strings:
+        - --weights_summary
+        required: false
+        type: *id005
+      - &id128 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: weights_save_path
+        help: Where to save weights if specified. Will override default_root_dir for
+          checkpoints only. Use this if for whatever reason you need the checkpoints
+          stored in a different place than the logs written in `default_root_dir`.
+          Can be remote file paths such as `s3://mybucket/path` or 'hdfs://path/'
+          Defaults to `default_root_dir`.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --weights_save_path
+        required: false
+        type: *id005
+      - &id094 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 2
+        dest: num_sanity_val_steps
+        help: Sanity check runs n validation batches before starting the training
+          routine. Set it to `-1` to run all batches in all validation dataloaders.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --num_sanity_val_steps
+        required: false
+        type: *id006
+      - &id110 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: resume_from_checkpoint
+        help: 'Path/URL of the checkpoint from which training is resumed. If there
+          is no checkpoint file at the path, an exception is raised. If resuming from
+          mid-epoch checkpoint, training will start from the beginning of the next
+          epoch. .. deprecated:: v1.5 ``resume_from_checkpoint`` is deprecated in
+          v1.5 and will be removed in v1.7. Please pass the path to ``Trainer.fit(...,
+          ckpt_path=...)`` instead.'
+        metavar: null
+        nargs: null
+        option_strings:
+        - --resume_from_checkpoint
+        required: false
+        type: *id005
+      - &id104 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: profiler
+        help: To profile individual steps during training and assist in identifying
+          bottlenecks.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --profiler
+        required: false
+        type: *id005
+      - &id029 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: false
+        dest: benchmark
+        help: If true enables cudnn.benchmark.
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --benchmark
+        required: false
+        type: *id004
+      - &id045 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: false
+        dest: deterministic
+        help: 'If ``True``, sets whether PyTorch operations must use deterministic
+          algorithms. Default: ``False``.'
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --deterministic
+        required: false
+        type: *id004
+      - &id108 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: 0
+        dest: reload_dataloaders_every_n_epochs
+        help: Set to a non-negative integer to reload dataloaders every n epochs.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --reload_dataloaders_every_n_epochs
+        required: false
+        type: *id006
+      - &id107 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: false
+        dest: reload_dataloaders_every_epoch
+        help: 'Set to True to reload dataloaders every epoch. .. deprecated:: v1.4
+          ``reload_dataloaders_every_epoch`` has been deprecated in v1.4 and will
+          be removed in v1.6. Please use ``reload_dataloaders_every_n_epochs``.'
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --reload_dataloaders_every_epoch
+        required: false
+        type: *id004
+      - &id026 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: false
+        dest: auto_lr_find
+        help: If set to True, will make trainer.tune() run a learning rate finder,
+          trying to optimize initial learning for faster convergence. trainer.tune()
+          method will set the suggested learning rate in self.lr or self.learning_rate
+          in the LightningModule. To use a different key set a string instead of True
+          with the key name.
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --auto_lr_find
+        required: false
+        type: &id009 !!python/name:pytorch_lightning.utilities.parsing.str_to_bool_or_str ''
+      - &id109 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: true
+        dest: replace_sampler_ddp
+        help: Explicitly enables or disables sampler replacement. If not specified
+          this will toggled automatically when DDP is used. By default it will add
+          ``shuffle=True`` for train sampler and ``shuffle=False`` for val/test sampler.
+          If you want to customize it, you can set ``replace_sampler_ddp=False`` and
+          add your own distributed sampler.
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --replace_sampler_ddp
+        required: false
+        type: *id004
+      - &id044 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: false
+        dest: detect_anomaly
+        help: Enable anomaly detection for the autograd engine.
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --detect_anomaly
+        required: false
+        type: *id004
+      - &id027 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: false
+        dest: auto_scale_batch_size
+        help: If set to True, will `initially` run a batch size finder trying to find
+          the largest batch size that fits into memory. The result will be stored
+          in self.batch_size in the LightningModule. Additionally, can be set to either
+          `power` that estimates the batch size through a power search or `binsearch`
+          that estimates the batch size through a binary search.
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --auto_scale_batch_size
+        required: false
+        type: *id009
+      - &id102 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: null
+        dest: prepare_data_per_node
+        help: 'If True, each LOCAL_RANK=0 will call prepare data. Otherwise only NODE_RANK=0,
+          LOCAL_RANK=0 will prepare data .. deprecated:: v1.5 Deprecated in v1.5.0
+          and will be removed in v1.7.0 Please set ``prepare_data_per_node`` in LightningDataModule
+          or LightningModule directly instead.'
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --prepare_data_per_node
+        required: false
+        type: *id004
+      - &id100 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: plugins
+        help: Plugins allow modification of core behavior like ddp and amp, and enable
+          custom lightning plugins.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --plugins
+        required: false
+        type: *id005
+      - &id024 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: native
+        dest: amp_backend
+        help: The mixed precision backend to use ("native" or "apex").
+        metavar: null
+        nargs: null
+        option_strings:
+        - --amp_backend
+        required: false
+        type: *id005
+      - &id025 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: null
+        dest: amp_level
+        help: The optimization level to use (O1, O2, etc...). By default it will be
+          set to "O2" if ``amp_backend`` is set to "apex".
+        metavar: null
+        nargs: null
+        option_strings:
+        - --amp_level
+        required: false
+        type: *id005
+      - &id083 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: false
+        dest: move_metrics_to_cpu
+        help: Whether to force internal logged metrics to be moved to cpu. This can
+          save some gpu memory, but can make training slower. Use with attention.
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --move_metrics_to_cpu
+        required: false
+        type: *id004
+      - &id084 !!python/object:argparse._StoreAction
+        choices: null
+        const: null
+        container: *id003
+        default: max_size_cycle
+        dest: multiple_trainloader_mode
+        help: How to loop over the datasets when there are multiple train loaders.
+          In 'max_size_cycle' mode, the trainer ends one epoch when the largest dataset
+          is traversed, and smaller datasets reload when running out of their data.
+          In 'min_size' mode, all the datasets reload when reaching the minimum length
+          of datasets.
+        metavar: null
+        nargs: null
+        option_strings:
+        - --multiple_trainloader_mode
+        required: false
+        type: *id005
+      - &id114 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: false
+        dest: stochastic_weight_avg
+        help: 'Whether to use `Stochastic Weight Averaging (SWA) <https://pytorch.org/blog/pytorch-1.6-now-includes-stochastic-weight-averaging/>`_.
+          .. deprecated:: v1.5 ``stochastic_weight_avg`` has been deprecated in v1.5
+          and will be removed in v1.7. Please pass :class:`~pytorch_lightning.callbacks.stochastic_weight_avg.StochasticWeightAveraging`
+          directly to the Trainer''s ``callbacks`` argument instead.'
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --stochastic_weight_avg
+        required: false
+        type: *id004
+      - &id117 !!python/object:argparse._StoreAction
+        choices: null
+        const: true
+        container: *id003
+        default: null
+        dest: terminate_on_nan
+        help: 'If set to True, will terminate training (by raising a `ValueError`)
+          at the end of each training batch, if any of the parameters or the loss
+          are NaN or +/-inf. .. deprecated:: v1.5 Trainer argument ``terminate_on_nan``
+          was deprecated in v1.5 and will be removed in 1.7. Please use ``detect_anomaly``
+          instead.'
+        metavar: null
+        nargs: '?'
+        option_strings:
+        - --terminate_on_nan
+        required: false
+        type: *id004
+      _has_negative_number_optionals: &id014 []
+      _mutually_exclusive_groups: &id015 []
+      _negative_number_matcher: &id016 !!python/object/apply:re._compile
+      - ^-\d+$|^-\d*\.\d+$
+      - 32
+      _option_string_actions: &id017
+        --T_new_semi: &id013 !!python/object:argparse._StoreAction
+          choices: null
+          const: null
+          container: &id011 !!python/object:argparse._ArgumentGroup
+            _action_groups: []
+            _actions: *id001
+            _defaults: *id010
+            _group_actions:
+            - &id082 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: UKGE
+              dest: model_name
+              help: The name of model.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --model_name
+              required: false
+              type: *id005
+            - &id041 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: nl27k
+              dest: dataset_name
+              help: The name of dataset.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --dataset_name
+              required: false
+              type: *id005
+            - &id037 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: KGDataModule
+              dest: data_class
+              help: The name of data preprocessing module, default KGDataModule.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --data_class
+              required: false
+              type: *id005
+            - &id068 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: KGELitModel
+              dest: litmodel_name
+              help: The name of processing module of training, evaluation and testing,
+                default KGELitModel.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --litmodel_name
+              required: false
+              type: *id005
+            - &id123 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: UniSampler
+              dest: train_sampler_class
+              help: Sampling method used in training, default UniSampler.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --train_sampler_class
+              required: false
+              type: *id005
+            - &id119 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: TestSampler
+              dest: test_sampler_class
+              help: Sampling method used in validation and testing, default TestSampler.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --test_sampler_class
+              required: false
+              type: *id005
+            - &id072 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: Adv_Loss
+              dest: loss_name
+              help: The name of loss function.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --loss_name
+              required: false
+              type: *id005
+            - &id085 !!python/object:argparse._StoreFalseAction
+              choices: null
+              const: false
+              container: *id011
+              default: true
+              dest: negative_adversarial_sampling
+              help: Use self-adversarial negative sampling.
+              metavar: null
+              nargs: 0
+              option_strings:
+              - --negative_adversarial_sampling
+              - -adv
+              required: false
+              type: null
+            - &id096 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: Adam
+              dest: optim_name
+              help: The name of optimizer
+              metavar: null
+              nargs: null
+              option_strings:
+              - --optim_name
+              required: false
+              type: *id005
+            - &id112 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 321
+              dest: seed
+              help: Random seed.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --seed
+              required: false
+              type: *id006
+            - &id075 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 12.0
+              dest: margin
+              help: 'The fixed margin in loss function. '
+              metavar: null
+              nargs: null
+              option_strings:
+              - --margin
+              required: false
+              type: *id012
+            - &id035 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 0
+              dest: confidence_filter
+              help: 'Set the confidence threshold in the link prediction, where only
+                samples above  filter_confidence will participate in the link prediction
+                task '
+              metavar: null
+              nargs: null
+              option_strings:
+              - --confidence_filter
+              required: false
+              type: *id012
+            - &id022 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 1.0
+              dest: adv_temp
+              help: The temperature of sampling in self-adversarial negative sampling.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --adv_temp
+              required: false
+              type: *id012
+            - &id048 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 200
+              dest: emb_dim
+              help: The embedding dimension in KGE model.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --emb_dim
+              required: false
+              type: *id006
+            - &id097 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 200
+              dest: out_dim
+              help: The output embedding dimmension in some KGE model.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --out_dim
+              required: false
+              type: *id006
+            - &id090 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 10
+              dest: num_neg
+              help: The number of negative samples corresponding to each positive
+                sample
+              metavar: null
+              nargs: null
+              option_strings:
+              - --num_neg
+              required: false
+              type: *id006
+            - &id088 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: null
+              dest: num_ent
+              help: The number of entity, autogenerate.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --num_ent
+              required: false
+              type: *id006
+            - &id093 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: null
+              dest: num_rel
+              help: The number of relation, autogenerate.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --num_rel
+              required: false
+              type: *id006
+            - &id031 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 5
+              dest: check_per_epoch
+              help: Evaluation per n epoch of training.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --check_per_epoch
+              required: false
+              type: *id006
+            - &id047 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 5
+              dest: early_stop_patience
+              help: If the number of consecutive bad results is n, early stop.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --early_stop_patience
+              required: false
+              type: *id006
+            - &id089 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 2
+              dest: num_layers
+              help: The number of layers in some GNN model.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --num_layers
+              required: false
+              type: *id006
+            - &id106 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 0.0
+              dest: regularization
+              help: null
+              metavar: null
+              nargs: null
+              option_strings:
+              - --regularization
+              - -r
+              required: false
+              type: *id012
+            - &id042 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: null
+              dest: decoder_model
+              help: The name of decoder model, in some model.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --decoder_model
+              required: false
+              type: *id005
+            - &id053 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: link_prediction
+              dest: eval_task
+              help: The task of validation, default link_prediction.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --eval_task
+              required: false
+              type: *id005
+            - &id030 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default:
+              - 1
+              - 3
+              - 10
+              dest: calc_hits
+              help: calc hits list
+              metavar: null
+              nargs: null
+              option_strings:
+              - --calc_hits
+              required: false
+              type: !!python/name:unKR.utils.setup_parser.%3Clambda%3E ''
+            - &id055 !!python/object:argparse._StoreFalseAction
+              choices: null
+              const: false
+              container: *id011
+              default: true
+              dest: filter_flag
+              help: Filter in negative sampling.
+              metavar: null
+              nargs: 0
+              option_strings:
+              - --filter_flag
+              required: false
+              type: null
+            - &id058 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: cuda:0
+              dest: gpu
+              help: Select the GPU in training, default cuda:0.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --gpu
+              required: false
+              type: *id005
+            - &id124 !!python/object:argparse._StoreTrueAction
+              choices: null
+              const: true
+              container: *id011
+              default: false
+              dest: use_wandb
+              help: Use "weight and bias" to record the result.
+              metavar: null
+              nargs: 0
+              option_strings:
+              - --use_wandb
+              required: false
+              type: null
+            - &id125 !!python/object:argparse._StoreTrueAction
+              choices: null
+              const: true
+              container: *id011
+              default: false
+              dest: use_weight
+              help: Use subsampling weight.
+              metavar: null
+              nargs: 0
+              option_strings:
+              - --use_weight
+              required: false
+              type: null
+            - &id034 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: ''
+              dest: checkpoint_dir
+              help: The checkpoint model path
+              metavar: null
+              nargs: null
+              option_strings:
+              - --checkpoint_dir
+              required: false
+              type: *id005
+            - &id111 !!python/object:argparse._StoreTrueAction
+              choices: null
+              const: true
+              container: *id011
+              default: false
+              dest: save_config
+              help: Save paramters config file.
+              metavar: null
+              nargs: 0
+              option_strings:
+              - --save_config
+              required: false
+              type: null
+            - &id069 !!python/object:argparse._StoreTrueAction
+              choices: null
+              const: true
+              container: *id011
+              default: false
+              dest: load_config
+              help: Load parametes config file.
+              metavar: null
+              nargs: 0
+              option_strings:
+              - --load_config
+              required: false
+              type: null
+            - &id036 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: config/nl27k/GMUC_nl27k.yaml
+              dest: config_path
+              help: The config file path.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --config_path
+              required: false
+              type: *id005
+            - &id057 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 4
+              dest: freq_init
+              help: null
+              metavar: null
+              nargs: null
+              option_strings:
+              - --freq_init
+              required: false
+              type: *id006
+            - &id118 !!python/object:argparse._StoreTrueAction
+              choices: null
+              const: true
+              container: *id011
+              default: false
+              dest: test_only
+              help: null
+              metavar: null
+              nargs: 0
+              option_strings:
+              - --test_only
+              required: false
+              type: null
+            - &id113 !!python/object:argparse._StoreFalseAction
+              choices: null
+              const: false
+              container: *id011
+              default: true
+              dest: shuffle
+              help: null
+              metavar: null
+              nargs: 0
+              option_strings:
+              - --shuffle
+              required: false
+              type: null
+            - &id086 !!python/object:argparse._StoreTrueAction
+              choices: null
+              const: true
+              container: *id011
+              default: false
+              dest: norm_flag
+              help: null
+              metavar: null
+              nargs: 0
+              option_strings:
+              - --norm_flag
+              required: false
+              type: null
+            - &id099 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: DistMult
+              dest: passleaf_score_function
+              help: only on PASSLEAF, choose the score function
+              metavar: null
+              nargs: null
+              option_strings:
+              - --passleaf_score_function
+              required: false
+              type: *id005
+            - *id013
+            - &id019 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 20
+              dest: T_semi_train
+              help: only on PASSLEAF, set the epoch to use semi-supervised sample
+                to train
+              metavar: null
+              nargs: null
+              option_strings:
+              - --T_semi_train
+              required: false
+              type: *id006
+            - &id023 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 0.02
+              dest: alpha_PASSLEAF
+              help: only on PASSLEAF, set the speed to use semi-supervised sample
+              metavar: null
+              nargs: null
+              option_strings:
+              - --alpha_PASSLEAF
+              required: false
+              type: *id012
+            - &id077 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id011
+              default: 10000000
+              dest: max_pool
+              help: only on PASSLEAF, set the maximum number of triples in the pool
+              metavar: null
+              nargs: null
+              option_strings:
+              - --max_pool
+              required: false
+              type: *id006
+            - &id062 !!python/object:argparse._HelpAction
+              choices: null
+              const: null
+              container: *id011
+              default: ==SUPPRESS==
+              dest: help
+              help: null
+              metavar: null
+              nargs: 0
+              option_strings:
+              - --help
+              - -h
+              required: false
+              type: null
+            _has_negative_number_optionals: *id014
+            _mutually_exclusive_groups: *id015
+            _negative_number_matcher: *id016
+            _option_string_actions: *id017
+            _registries: &id040
+              action:
+                null: &id018 !!python/name:argparse._StoreAction ''
+                store: *id018
+                store_const: !!python/name:argparse._StoreConstAction ''
+                store_true: !!python/name:argparse._StoreTrueAction ''
+                store_false: !!python/name:argparse._StoreFalseAction ''
+                append: !!python/name:argparse._AppendAction ''
+                append_const: !!python/name:argparse._AppendConstAction ''
+                count: !!python/name:argparse._CountAction ''
+                help: !!python/name:argparse._HelpAction ''
+                version: !!python/name:argparse._VersionAction ''
+                parsers: !!python/name:argparse._SubParsersAction ''
+                extend: !!python/name:argparse._ExtendAction ''
+              type:
+                null: !!python/name:argparse.identity ''
+            argument_default: null
+            conflict_handler: error
+            description: null
+            prefix_chars: '-'
+            title: optional arguments
+          default: 15
+          dest: T_new_semi
+          help: only on PASSLEAF, set the epoch to generate semi-supervised sample
+          metavar: null
+          nargs: null
+          option_strings:
+          - --T_new_semi
+          required: false
+          type: *id006
+        --T_semi_train: *id019
+        --accelerator: *id020
+        --accumulate_grad_batches: *id021
+        --adv_temp: *id022
+        --alpha_PASSLEAF: *id023
+        --amp_backend: *id024
+        --amp_level: *id025
+        --auto_lr_find: *id026
+        --auto_scale_batch_size: *id027
+        --auto_select_gpus: *id028
+        --benchmark: *id029
+        --calc_hits: *id030
+        --check_per_epoch: *id031
+        --check_val_every_n_epoch: *id032
+        --checkpoint_callback: *id033
+        --checkpoint_dir: *id034
+        --confidence_filter: *id035
+        --config_path: *id036
+        --data_class: *id037
+        --data_path: &id039 !!python/object:argparse._StoreAction
+          choices: null
+          const: null
+          container: &id038 !!python/object:argparse._ArgumentGroup
+            _action_groups: []
+            _actions: *id001
+            _defaults: *id010
+            _group_actions:
+            - &id122 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id038
+              default: 0
+              dest: train_bs
+              help: Number of examples to operate on per forward step.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --train_bs
+              required: false
+              type: *id006
+            - &id087 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id038
+              default: 0
+              dest: num_batches
+              help: Number of examples to operate on per forward step.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --num_batches
+              required: false
+              type: *id006
+            - &id052 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id038
+              default: 16
+              dest: eval_bs
+              help: Number of examples to operate on per forward step.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --eval_bs
+              required: false
+              type: *id006
+            - &id095 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id038
+              default: 8
+              dest: num_workers
+              help: Number of additional processes to load data.
+              metavar: null
+              nargs: null
+              option_strings:
+              - --num_workers
+              required: false
+              type: *id006
+            - *id039
+            _has_negative_number_optionals: *id014
+            _mutually_exclusive_groups: *id015
+            _negative_number_matcher: *id016
+            _option_string_actions: *id017
+            _registries: *id040
+            argument_default: null
+            conflict_handler: error
+            description: null
+            prefix_chars: '-'
+            title: Data Args
+          default: ./dataset/WN18RR
+          dest: data_path
+          help: Number of additional processes to load data.
+          metavar: null
+          nargs: null
+          option_strings:
+          - --data_path
+          required: false
+          type: *id005
+        --dataset_name: *id041
+        --decoder_model: *id042
+        --default_root_dir: *id043
+        --detect_anomaly: *id044
+        --deterministic: *id045
+        --devices: *id046
+        --early_stop_patience: *id047
+        --emb_dim: *id048
+        --enable_checkpointing: *id049
+        --enable_model_summary: *id050
+        --enable_progress_bar: *id051
+        --eval_bs: *id052
+        --eval_task: *id053
+        --fast_dev_run: *id054
+        --filter_flag: *id055
+        --flush_logs_every_n_steps: *id056
+        --freq_init: *id057
+        --gpu: *id058
+        --gpus: *id059
+        --gradient_clip_algorithm: *id060
+        --gradient_clip_val: *id061
+        --help: *id062
+        --ipus: *id063
+        --limit_predict_batches: *id064
+        --limit_test_batches: *id065
+        --limit_train_batches: *id066
+        --limit_val_batches: *id067
+        --litmodel_name: *id068
+        --load_config: *id069
+        --log_every_n_steps: *id070
+        --log_gpu_memory: *id071
+        --logger: *id002
+        --loss_name: *id072
+        --lr: &id073 !!python/object:argparse._StoreAction
+          choices: null
+          const: null
+          container: &id074 !!python/object:argparse._ArgumentGroup
+            _action_groups: []
+            _actions: *id001
+            _defaults: *id010
+            _group_actions:
+            - *id073
+            - &id127 !!python/object:argparse._StoreAction
+              choices: null
+              const: null
+              container: *id074
+              default: 0.01
+              dest: weight_decay
+              help: null
+              metavar: null
+              nargs: null
+              option_strings:
+              - --weight_decay
+              required: false
+              type: *id012
+            _has_negative_number_optionals: *id014
+            _mutually_exclusive_groups: *id015
+            _negative_number_matcher: *id016
+            _option_string_actions: *id017
+            _registries: *id040
+            argument_default: null
+            conflict_handler: error
+            description: null
+            prefix_chars: '-'
+            title: LitModel Args
+          default: 0.1
+          dest: lr
+          help: null
+          metavar: null
+          nargs: null
+          option_strings:
+          - --lr
+          required: false
+          type: *id012
+        --margin: *id075
+        --max_epochs: *id076
+        --max_pool: *id077
+        --max_steps: *id078
+        --max_time: *id079
+        --min_epochs: *id080
+        --min_steps: *id081
+        --model_name: *id082
+        --move_metrics_to_cpu: *id083
+        --multiple_trainloader_mode: *id084
+        --negative_adversarial_sampling: *id085
+        --norm_flag: *id086
+        --num_batches: *id087
+        --num_ent: *id088
+        --num_layers: *id089
+        --num_neg: *id090
+        --num_nodes: *id091
+        --num_processes: *id092
+        --num_rel: *id093
+        --num_sanity_val_steps: *id094
+        --num_workers: *id095
+        --optim_name: *id096
+        --out_dim: *id097
+        --overfit_batches: *id098
+        --passleaf_score_function: *id099
+        --plugins: *id100
+        --precision: *id101
+        --prepare_data_per_node: *id102
+        --process_position: *id103
+        --profiler: *id104
+        --progress_bar_refresh_rate: *id105
+        --regularization: *id106
+        --reload_dataloaders_every_epoch: *id107
+        --reload_dataloaders_every_n_epochs: *id108
+        --replace_sampler_ddp: *id109
+        --resume_from_checkpoint: *id110
+        --save_config: *id111
+        --seed: *id112
+        --shuffle: *id113
+        --stochastic_weight_avg: *id114
+        --strategy: *id115
+        --sync_batchnorm: *id116
+        --terminate_on_nan: *id117
+        --test_only: *id118
+        --test_sampler_class: *id119
+        --tpu_cores: *id120
+        --track_grad_norm: *id121
+        --train_bs: *id122
+        --train_sampler_class: *id123
+        --use_wandb: *id124
+        --use_weight: *id125
+        --val_check_interval: *id126
+        --weight_decay: *id127
+        --weights_save_path: *id128
+        --weights_summary: *id129
+        -adv: *id085
+        -h: *id062
+        -r: *id106
+      _registries: *id040
+      argument_default: null
+      conflict_handler: error
+      description: null
+      prefix_chars: '-'
+      title: pl.Trainer
+    default: true
+    dest: logger
+    help: Logger (or iterable collection of loggers) for experiment tracking. A ``True``
+      value uses the default ``TensorBoardLogger``. ``False`` will disable logging.
+      If multiple loggers are provided and the `save_dir` property of that logger
+      is not set, local files (checkpoints, profiler traces, etc.) are saved in ``default_root_dir``
+      rather than in the ``log_dir`` of any of the individual loggers.
+    metavar: null
+    nargs: '?'
+    option_strings:
+    - --logger
+    required: false
+    type: *id004
+  - *id033
+  - *id049
+  - *id043
+  - *id061
+  - *id060
+  - *id103
+  - *id091
+  - *id092
+  - *id046
+  - *id059
+  - *id028
+  - *id120
+  - *id063
+  - *id071
+  - *id105
+  - *id051
+  - *id098
+  - *id121
+  - *id032
+  - *id054
+  - *id021
+  - *id076
+  - *id080
+  - *id078
+  - *id081
+  - *id079
+  - *id066
+  - *id067
+  - *id065
+  - *id064
+  - *id126
+  - *id056
+  - *id070
+  - *id020
+  - *id115
+  - *id116
+  - *id101
+  - *id050
+  - *id129
+  - *id128
+  - *id094
+  - *id110
+  - *id104
+  - *id029
+  - *id045
+  - *id108
+  - *id107
+  - *id026
+  - *id109
+  - *id044
+  - *id027
+  - *id102
+  - *id100
+  - *id024
+  - *id025
+  - *id083
+  - *id084
+  - *id114
+  - *id117
+  - *id082
+  - *id041
+  - *id037
+  - *id068
+  - *id123
+  - *id119
+  - *id072
+  - *id085
+  - *id096
+  - *id112
+  - *id075
+  - *id035
+  - *id022
+  - *id048
+  - *id097
+  - *id090
+  - *id088
+  - *id093
+  - *id031
+  - *id047
+  - *id089
+  - *id106
+  - *id042
+  - *id053
+  - *id030
+  - *id055
+  - *id058
+  - *id124
+  - *id125
+  - *id034
+  - *id111
+  - *id069
+  - *id036
+  - *id057
+  - *id118
+  - *id113
+  - *id086
+  - *id099
+  - *id013
+  - *id019
+  - *id023
+  - *id077
+  - *id073
+  - *id127
+  - *id122
+  - *id087
+  - *id052
+  - *id095
+  - *id039
+  - *id062
+  _defaults: *id010
+  _group_actions: []
+  _has_negative_number_optionals: *id014
+  _mutually_exclusive_groups: *id015
+  _negative_number_matcher: *id016
+  _option_string_actions: *id017
+  _registries: *id040
+  argument_default: null
+  conflict_handler: error
+  description: null
+  prefix_chars: '-'
+  title: positional arguments
+- *id011
+- !!python/object:argparse._ArgumentGroup
+  _action_groups: []
+  _actions: *id001
+  _defaults: *id010
+  _group_actions: []
+  _has_negative_number_optionals: *id014
+  _mutually_exclusive_groups: *id015
+  _negative_number_matcher: *id016
+  _option_string_actions: *id017
+  _registries: *id040
+  argument_default: null
+  conflict_handler: error
+  description: null
+  prefix_chars: '-'
+  title: Trainer Args
+- *id003
+- *id074
+- *id038
+_actions: *id001
+_defaults: *id010
+_has_negative_number_optionals: *id014
+_mutually_exclusive_groups: *id015
+_negative_number_matcher: *id016
+_option_string_actions: *id017
+_optionals: *id011
+_positionals: *id130
+_registries: *id040
+_subparsers: null
+accelerator: gpu
+accumulate_grad_batches: 4
+add_help: false
+allow_abbrev: true
+amp_backend: native
+amp_level: O1
+argument_default: null
+auto_lr_find: false
+auto_scale_batch_size: false
+auto_select_gpus: true
+benchmark: true
+bert_embedding: bert_embedding
+check_val_every_n_epoch: 1
+checkpoint_callback: null
+checkpoint_dir: ''
+confidence_filter: 0.7
+config_path: ''
+conflict_handler: error
+data_class: SAURDataModule
+data_path: dataset/ppi5k
+dataset_name: ppi5k
+default_root_dir: null
+description: null
+deterministic: false
+devices:
+- 0
+early_stop_patience: 5
+emb_dim: 768
+enable_checkpointing: true
+enable_model_summary: true
+enable_progress_bar: true
+epilog: null
+eval_bs: 32
+eval_task: simple_evaluation
+exit_on_error: true
+fast_dev_run: false
+formatter_class: !!python/name:argparse.HelpFormatter ''
+fromfile_prefix_chars: null
+gpu: 0
+gpus: 1
+gradient_clip_algorithm: norm
+gradient_clip_val: 1.0
+hidden_dim: 10
+hidden_size: 128
+input_size: 316
+kg_pretrained_dir: ./bert_model
+limit_predict_batches: 2.0e-05
+limit_test_batches: 2.0e-05
+limit_train_batches: 2.0e-05
+limit_val_batches: 2.0e-05
+litmodel_name: SAURLitModel
+load_config: false
+log_every_n_steps: 20
+logger: true
+loss_name: SAUR_Loss
+lr: 0.001
+max_epochs: 1
+max_steps: 10
+metric: link_prediction
+min_epochs: null
+min_steps: null
+model_name: SAUR
+monitor: MSE
+move_metrics_to_cpu: false
+multiple_trainloader_mode: max_size_cycle
+num_ent: 5000
+num_neg: 5
+num_rel: 10
+num_sanity_val_steps: 1
+num_workers: 0
+optim_name: Adam
+output_dim: 128
+precision: 16
+prefix_chars: '-'
+prog: SAUR-ppi5kdemo.py
+progress_bar_refresh_rate: 1
+ratio: 0.24
+regularization:
+  attention: 0.01
+  entity: 0.01
+  relation: 0.01
+reload_dataloaders_every_epoch: false
+reload_dataloaders_every_n_epochs: 0
+replace_sampler_ddp: true
+resume_from_checkpoint: null
+root: PPI5K
+save_config: false
+seed: 42
+shuffle: true
+strategy: null
+sync_batchnorm: false
+test_only: false
+test_sampler_class: RandomSampler
+train_bs: 32
+train_sampler_class: RandomSampler
+usage: null
+use_wandb: false
+val_check_interval: 1.0
+weight_decay: 0.001
+weights_save_path: null
+weights_summary: top
