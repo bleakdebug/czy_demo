@@ -17,7 +17,7 @@
 SAUR model is a complex model for uncertain knowledge graph inference, which combines BERT model, Graph Convolutional Network (GCN), Long Short Term Few Pages Network (LSTM), and was proposed by Zhao et al. (2025). And unKR is a UKG inference toolkit that has integrated nine UKG inference models proposed in recent years. It provides a unifying workflow to implement a variety of uncertain knowledge graph representation learning models to complete UKG reasoning. This project integrates the SAUR model into the unKR toolkit using [PyTorch Lightning](https://www.pytorchlightning.ai/) and pyTorch frameworks. The integrated SAUR model is trained on the data set provided by unKR, and the performance optimization of the SAUR model is realized.
 
 <h3 align="center">
-    <img src="pics/unKR.svg", width="1000">
+    <img src="pics/SAUR-unKR.png", width="1000">
 </h3>
 <!-- <p align="center">
     <a href=""> <img src="pics/SAUR-unKR.png" width="1000"/></a>
@@ -37,7 +37,7 @@ unKR provides three public UKG datasets including CN15K, NL27K, and PPI5K. The f
 ## Reproduced Results
 unKR determines two tasks, confidence prediction and link prediction, to evaluate models' ability of UKG reasoning. For confidence prediction task, MSE (Mean Squared Error) and MAE (Mean Absolute Error) are reported. For link prediction task, Hits@k(k=1,3,10), MRR (Mean Reciprocal Rank) under both raw and filterd settings are reported. In addition, we choose high-confidence (>0.7) triples as the test data for link prediction.
 
-Here are the reproduce results of SAUR model on NL27K dataset with unKR. 
+Here are the reproduce results of SAUR model on cn15k,nl27k,ppi5k datasets with unKR. 
 
 ### Confidence prediction
 <table>
